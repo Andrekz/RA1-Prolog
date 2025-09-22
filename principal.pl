@@ -46,7 +46,7 @@ pergunta(11, 'Você trabalha bem em equipe?', trabalho_em_equipe).
 
 :- dynamic resposta/2.
 
-%predicado para pode escolher o mode que vai ser utilizado
+%predicado para pode escolher o modo que vai ser utilizado
 
 principal :-
     writeln('--- Sistema Especialista de Trilhas Tecnológicas ---'),
@@ -91,7 +91,7 @@ perguntar(Id, Texto) :-
     read(RespostaRaw),
     validar_resposta(RespostaRaw, Resposta),
     assertz(resposta(Id, Resposta)).
-
+%validação de respostasm garantindo que a entrada seja s ou n
 validar_resposta(s, s).
 validar_resposta(n, n).
 validar_resposta(RespostaRaw, Resposta) :-
@@ -110,7 +110,7 @@ calcular_ranking(Ranking) :-
         Lista),
     keysort(Lista, Ordenada),
     reverse(Ordenada, Ranking).
-
+%calcula a pontuação definindo pesos para características que são associados a trilhas
 calcula_pontuacao(Trilha, Pontos, Justificativa) :-
     findall(Peso-Char,
         (perfil(Trilha, Char, Peso),
@@ -151,4 +151,5 @@ recomenda(automatico, Ranking) :-
 
 
 % Cole aqui as respostas de perfil teste
+
 
